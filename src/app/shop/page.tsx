@@ -1,8 +1,11 @@
 import React from 'react'
+import TopNavBar from '@/components/layout/topNavBar'
 
 function page() {
   return (
-    <div>Shop page</div>
+    <div>
+      <TopNavBar />
+    </div>
   )
 }
 

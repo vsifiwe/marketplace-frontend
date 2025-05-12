@@ -5,23 +5,23 @@ import React from 'react'
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import { Input, IconInput } from "@/components/ui/input"
+import { IconInput } from "@/components/ui/input"
 import { Button } from '../ui/button'
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import Link from 'next/link'
-import { LockKeyhole, LogIn, Eye, Mail } from 'lucide-react'
+import { LockKeyhole, LogIn, Mail } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 function LoginForm() {
-
+  const router = useRouter()
 
   const formSchema = z.object({
     email: z.string().email({
@@ -42,6 +42,7 @@ function LoginForm() {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values)
+    router.push('/shop')
   }
 
   return (
