@@ -1,56 +1,61 @@
+import router from "next/router";
 import { AUTH_ROUTES } from "./config";
 import axios from "axios";
 
-type registerData = {
+type AuthResponse = {
+    message: string;
+    access_token?: string;
+}
+
+type RegisterData = {
     name: string;
     email: string;
     password: string;
     role: string;
 }
 
-type loginData = {
+type LoginData = {
     email: string;
     password: string;
 }
 
-export async function register(data: registerData, onSuccess: () => void, onError: (error: string) => void) {
+async function makeAuthRequest(
+    url: string,
+    data: RegisterData | LoginData,
+    onSuccess: (role: string) => void,
+    onError: (error: string) => void
+): Promise<AuthResponse> {
     try {
-        const url = `${AUTH_ROUTES.REGISTER}`;
         const response = await axios.post(url, data);
         const msg = response.data.message;
 
         if (response.status === 201) {
-            onSuccess();
-            return { message: "Registered successfully" };
+            if ('access_token' in response.data) {
+                localStorage.setItem('token', response.data.access_token);
+            }
+            try {
+                const userRole = response.data.user.role;
+                onSuccess(userRole);
+                localStorage.setItem('role', userRole); 
+            } catch (error) {
+                onSuccess('user');
+            }
+            return { message: msg || "Success" };
         } else {
             onError(msg);
             return { message: msg };
         }
     } catch (error: any) {
-        const errorMessage = error.response?.data?.message || error.message || "Registration failed";
+        const errorMessage = error.response?.data?.message || error.message || "Request failed";
         onError(errorMessage);
         return { message: errorMessage };
     }
 }
 
-export async function login(data: loginData, onSuccess: () => void, onError: (error: string) => void) {
-    try {
-        const url = `${AUTH_ROUTES.LOGIN}`;
-        const response = await axios.post(url, data);
-        const msg = response.data.message;
-        console.log("response", response);
+export async function register(data: RegisterData, onSuccess: (role: string) => void, onError: (error: string) => void) {
+    return makeAuthRequest(AUTH_ROUTES.REGISTER, data, onSuccess, onError);
+}
 
-        if (response.status === 201) {
-            localStorage.setItem('token', response.data.access_token);
-            onSuccess();
-            return { message: "Logged in successfully" };
-        } else {
-            onError(msg);
-            return { message: msg };
-        }
-    } catch (error: any) {
-        const errorMessage = error.response?.data?.message || error.message || "Login failed";
-        onError(errorMessage);
-        return { message: errorMessage };
-    }
+export async function login(data: LoginData, onSuccess: (role: string) => void, onError: (error: string) => void) {
+    return makeAuthRequest(AUTH_ROUTES.LOGIN, data, onSuccess, onError);
 }

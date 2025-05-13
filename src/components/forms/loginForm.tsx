@@ -43,10 +43,19 @@ function LoginForm() {
   })
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    login(values, () => {
+
+    const onSuccess = (role: string) => {
       toast.success("Logged in successfully")
-      router.push('/shop')
-    }, (error) => {
+      if (role === 'admin') {
+        router.push('/admin')
+      } else if (role === 'seller') {
+        router.push('/seller')
+      } else {
+        router.push('/shop')
+      }
+    }
+
+    login(values, onSuccess, (error) => {
       toast.error(error)
     })
   }

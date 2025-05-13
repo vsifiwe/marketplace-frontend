@@ -51,7 +51,8 @@ function RegisterForm() {
       ...values,
       role: "user"
     }
-    register(data, () => {
+    register(data, (role: string) => {
+      console.log("role", role)
       toast.success("Registered successfully")
       router.push('/auth')
     }, (error: string) => {
