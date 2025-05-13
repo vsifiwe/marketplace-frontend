@@ -80,7 +80,7 @@ function LoginForm() {
             </FormItem>
           )}
         />
-        <div className='flex flex-row justify-between items-center'>
+        <div className='flex flex-col gap-2 md:flex-row justify-between items-center'>
           <Link href="/forgot-password" className='text-sm underline font-bold'>Forgot password?</Link>
           <Button type="submit">
             Login
