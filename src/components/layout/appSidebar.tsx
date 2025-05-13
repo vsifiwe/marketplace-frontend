@@ -17,12 +17,12 @@ type SidebarItem = {
   icon: React.ElementType;
 }
 
-export function AppSidebar({ items }: { items: SidebarItem[] }) {
+export function AppSidebar({ items, title }: { items: SidebarItem[], title: string }) {
   return (
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Admin</SidebarGroupLabel>
+          <SidebarGroupLabel>{title}</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (

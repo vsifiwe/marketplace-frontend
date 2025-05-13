@@ -17,3 +17,9 @@ export const ADMIN_ROUTES = {
     GET_CATEGORIES: `${API_URL}/admin/categories`,
     GET_PRODUCTS: `${API_URL}/admin/products`,
 }
+
+export const SELLER_ROUTES = {
+    GET_CATEGORIES: `${API_URL}/sellers/categories`,
+    GET_PRODUCTS: `${API_URL}/sellers/products`,
+    CREATE_PRODUCT: `${API_URL}/sellers/products`,
+}

@@ -1,13 +1,22 @@
 import { ColumnDef } from "@tanstack/react-table";
 
 export interface Product {
-    id:          number;
-    name:        string;
+    id: number;
+    name: string;
     description: string;
-    price:       number;
-    salePrice:   number;
-    images:      string[];
+    price: number;
+    salePrice: number;
+    images: string[];
     reviewCount: number;
+}
+
+export interface CreateProduct {
+    name: string;
+    description: string;
+    price: number;
+    salePrice: number;
+    images: string[];
+    categoryId: number;
 }
 
 export const columns: ColumnDef<Product>[] = [
