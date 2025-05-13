@@ -17,7 +17,7 @@ function Product() {
         <div>
             <TopNavBar />
             {/* breadcrumb */}
-            <div className='flex flex-row gap-4'>
+            <div className='flex flex-row gap-4 mx-8 mt-4'>
                 <ArrowLeft />
                 <Breadcrumb>
                 <BreadcrumbList>
