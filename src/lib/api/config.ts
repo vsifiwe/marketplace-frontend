@@ -15,4 +15,5 @@ export const ADMIN_ROUTES = {
     GET_APPLICATIONS: `${API_URL}/admin/sellers/applications`,
     GET_SHOPS: `${API_URL}/admin/stores`,
     GET_CATEGORIES: `${API_URL}/admin/categories`,
+    GET_PRODUCTS: `${API_URL}/admin/products`,
 }

@@ -15,14 +15,18 @@ function Categories() {
     toast.error(error)
 }
     const fetchCategories = async () => {
-      const categoriesResponse = await getCategories(onError)
-      setCategories(categoriesResponse)
+      const response = await getCategories(onError)
+      console.log("response", response)
+      if (response.data) {
+        console.log("response.data", response.data)
+        setCategories(response.data)
+      }
   }
 
     useEffect(() => {
         fetchCategories()
     }, [])
-
+    
   return (
     <div className='flex flex-col m-8 w-full'>
         <h1 className='text-2xl font-bold mb-8'>Categories</h1>

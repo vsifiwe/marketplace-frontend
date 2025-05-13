@@ -11,7 +11,9 @@ function Shops() {
 
         const fetchShops = async () => {
             const shopsResponse = await getShops(onError)
-            setShops(shopsResponse)
+            if (shopsResponse.data) {
+                setShops(shopsResponse.data)
+            }
         }
         useEffect(() => {
             fetchShops()

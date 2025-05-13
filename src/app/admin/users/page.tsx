@@ -14,7 +14,9 @@ function Users() {
         toast.error(error)
       }
       const usersResponse = await getUsers(onError)
-      setUsers(usersResponse)
+      if (usersResponse.data) {
+        setUsers(usersResponse.data)
+      }
     }
     fetchUsers()
   }, [])

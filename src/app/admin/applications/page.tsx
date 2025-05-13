@@ -14,7 +14,9 @@ function Applications() {
                 toast.error(error)
             }
             const applicationsResponse = await getApplications(onError)
-            setApplications(applicationsResponse)
+            if (applicationsResponse.data) {
+                setApplications(applicationsResponse.data)
+            }
         }
         fetchApplications()
     }, [])
