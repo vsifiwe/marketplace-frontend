@@ -1,7 +1,6 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "./appSidebar"
 import { Bookmark, Package, ShoppingBagIcon, Store, UserIcon } from "lucide-react"
-import TopNavBar from "./topNavBar"
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 
@@ -9,6 +8,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         {
             title: "Users",
             url: "/admin/users",
+            icon: UserIcon
+        },
+        {
+            title: "Seller Applications",
+            url: "/admin/applications",
             icon: UserIcon
         },
         {
