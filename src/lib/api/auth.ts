@@ -1,6 +1,5 @@
 import { AUTH_ROUTES } from "./config";
 import axios from "axios";
-import { toast } from "sonner";
 
 type registerData = {
     name: string;
