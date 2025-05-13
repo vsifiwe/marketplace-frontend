@@ -19,6 +19,8 @@ import { z } from "zod"
 import Link from 'next/link'
 import { LockKeyhole, LogIn, Mail } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import { login } from '@/lib/api/auth'
+import { toast } from 'sonner'
 
 function LoginForm() {
   const router = useRouter()
@@ -41,8 +43,12 @@ function LoginForm() {
   })
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
-    router.push('/shop')
+    login(values, () => {
+      toast.success("Logged in successfully")
+      router.push('/shop')
+    }, (error) => {
+      toast.error(error)
+    })
   }
 
   return (
