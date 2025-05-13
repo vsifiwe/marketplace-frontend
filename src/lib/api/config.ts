@@ -13,4 +13,6 @@ export const SHOP_ROUTES = {
 export const ADMIN_ROUTES = {
     GET_USERS: `${API_URL}/admin/users`,
     GET_APPLICATIONS: `${API_URL}/admin/sellers/applications`,
+    GET_SHOPS: `${API_URL}/admin/stores`,
+    GET_CATEGORIES: `${API_URL}/admin/categories`,
 }

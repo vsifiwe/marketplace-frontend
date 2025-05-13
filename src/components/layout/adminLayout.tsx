@@ -16,8 +16,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             icon: UserIcon
         },
         {
-            title: "Sellers",
-            url: "/admin/sellers",
+            title: "Shops",
+            url: "/admin/shops",
             icon: Store
         },
         {
