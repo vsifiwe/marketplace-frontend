@@ -9,7 +9,7 @@ function registerSection() {
     const router = useRouter()
 
     return (
-        <div className='flex flex-row justify-between items-center w-1/2 p-8 bg-white rounded-lg'>
+        <div className='flex flex-col md:flex-row justify-between items-center w-1/2 p-8 bg-white rounded-lg'>
             <div className='flex flex-col items-start justify-center'>
                 <h3 className='text-2xl font-bold'>Already have an account?</h3>
                 <p className='text-sm text-gray-500'>Login to your account</p>
