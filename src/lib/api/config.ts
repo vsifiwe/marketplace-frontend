@@ -9,7 +9,8 @@ export const SHOP_ROUTES = {
     GET_PRODUCTS: `${API_URL}/shoppers`,
     GET_PRODUCT: `${API_URL}/shoppers`,
     ADD_TO_CART: `${API_URL}/shoppers/cart`,
-    GET_CART: `${API_URL}/shoppers/cart`
+    GET_CART: `${API_URL}/shoppers/cart`,
+    DELETE_CART: `${API_URL}/shoppers/cart`
 }
 
 export const ADMIN_ROUTES = {

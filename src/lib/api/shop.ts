@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { SHOP_ROUTES } from './config'
+import { CartResponse } from '@/components/ui/cart'
 const getProducts = async () => {
     try {
         const token = localStorage.getItem('token')
@@ -49,7 +50,7 @@ const addToCart = async (productId: string, quantity: number, onSuccess: () => v
     }
 }
 
-const getCart = async () => {
+const getCart = async (): Promise<CartResponse> => {
     try {
         const token = localStorage.getItem('token')
         const res = await axios.get(`${SHOP_ROUTES.GET_CART}`, {
@@ -60,8 +61,34 @@ const getCart = async () => {
         return res.data
     } catch (error) {
         console.log(error)
+        return {
+            id: 0,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            items: [],
+            total: 0
+        }
+    }
+}
+
+const deleteCart = async (productId: string, onSuccess: () => void) => {
+    try {
+        const token = localStorage.getItem('token')
+        const url = `${SHOP_ROUTES.DELETE_CART}/${productId}`
+
+        console.log(url)
+        console.log(productId)
+        const res = await axios.delete(url, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        onSuccess()
+        return res.data
+    } catch (error) {
+        console.log(error)
         return null
     }
 }
 
-export { getProducts, getProduct, addToCart, getCart }
+export { getProducts, getProduct, addToCart, getCart, deleteCart }
