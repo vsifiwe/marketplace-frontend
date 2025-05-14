@@ -1,10 +1,25 @@
-import React from 'react'
+'use client'
+
+import React, { useState } from 'react'
 import { Button } from '../ui/button'
 import Image from 'next/image'
 import { ArrowRight, Instagram, Linkedin, Mail, X, Youtube } from 'lucide-react'
 import { IconInput } from '../ui/input'
+import { toast } from 'sonner'
+import { registerSeller } from '@/lib/api/auth'
 
 function Footer() {
+    const [email, setEmail] = useState<string>('')
+
+    const handleRegister = () => {
+        registerSeller({email}, () => {
+            toast.success('Application submitted')
+            setEmail('')
+        }, (error) => {
+            console.log(error)
+            toast.error("Application failed")
+        })
+    }
     return (
         <div>
             {/* shop registration section */}
@@ -12,8 +27,8 @@ function Footer() {
                 <h1 className='text-2xl font-bold'><span className='text-[#C1CF16]'>Open</span> your Store</h1>
 
                 <div className='flex flex-row items-center gap-4 w-1/2'>
-                    <IconInput placeholder='Enter your email' leftIcon={Mail} className='w-full'/>
-                    <Button>
+                    <IconInput placeholder='Enter your email' leftIcon={Mail} className='w-full' value={email} onChange={(e) => setEmail(e.target.value)}/>
+                    <Button onClick={handleRegister}>
                         Register <ArrowRight />
                     </Button>
                 </div>

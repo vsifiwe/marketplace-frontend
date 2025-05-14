@@ -20,7 +20,7 @@ type LoginData = {
 
 async function makeAuthRequest(
     url: string,
-    data: RegisterData | LoginData,
+    data: RegisterData | LoginData | {email: string},
     onSuccess: (role: string) => void,
     onError: (error: string) => void
 ): Promise<AuthResponse> {
@@ -59,4 +59,19 @@ export async function register(data: RegisterData, onSuccess: (role: string) => 
 
 export async function login(data: LoginData, onSuccess: (role: string) => void, onError: (error: string) => void) {
     return makeAuthRequest(AUTH_ROUTES.LOGIN, data, onSuccess, onError);
+}
+
+export async function registerSeller(data: {email: string}, onSuccess: (role: string) => void, onError: (error: string) => void) {
+    try {
+        const token = localStorage.getItem('token')
+        const response = await axios.post(AUTH_ROUTES.REGISTER_SELLER, data, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        console.log(response)
+        onSuccess('seller');
+    } catch (error) {
+        onError(error as string);
+    }
 }
