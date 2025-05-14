@@ -1,6 +1,19 @@
 import axios from 'axios'
 import { SHOP_ROUTES } from './config'
 import { CartResponse } from '@/components/ui/cart'
+
+interface Item {
+    productId: number
+    quantity: number
+}
+export interface Order {
+    street: string
+    city: string
+    phone: string
+    email: string
+    items: Item[]
+}
+
 const getProducts = async () => {
     try {
         const token = localStorage.getItem('token')
@@ -91,4 +104,19 @@ const deleteCart = async (productId: string, onSuccess: () => void) => {
     }
 }
 
-export { getProducts, getProduct, addToCart, getCart, deleteCart }
+const placeOrder = async (order: Order, onSuccess: () => void) => {
+    try {
+        const token = localStorage.getItem('token')
+        const res = await axios.post(`${SHOP_ROUTES.PLACE_ORDER}`, order, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        onSuccess()
+        return res.data
+    } catch (error) {
+        console.log(error)
+        return null
+    }
+}
+export { getProducts, getProduct, addToCart, getCart, deleteCart, placeOrder }
