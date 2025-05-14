@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { Button } from '../ui/button'
-import { Store, LogOut, Heart, ShoppingCart, Search, House, ChevronDown, User } from 'lucide-react'
+import { Store, Heart, ShoppingCart, Search, House, ChevronDown, User } from 'lucide-react'
 
 function topNavBar() {
     return (

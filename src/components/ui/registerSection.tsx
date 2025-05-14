@@ -5,7 +5,7 @@ import { MoveRight } from 'lucide-react'
 import { Button } from './button'
 import { useRouter } from 'next/navigation'
 
-function registerSection() {
+function RegisterSection() {
     const router = useRouter()
 
     return (
@@ -23,4 +23,4 @@ function registerSection() {
     )
 }
 
-export default registerSection  
+export default RegisterSection  

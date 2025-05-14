@@ -31,8 +31,9 @@ async function makeAuthenticatedRequest<T>(
             onError(msg);
             return { message: msg };
         }
-    } catch (error: any) {
-        const errorMessage = error.response?.data?.message || error.message || "Request failed";
+    } catch (error) {
+        console.log("error", error)
+        const errorMessage = "Request failed";
         onError(errorMessage);
         return { message: errorMessage };
     }

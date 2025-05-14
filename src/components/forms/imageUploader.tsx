@@ -3,7 +3,6 @@
 import { useState, useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 import Image from 'next/image'
-import { Button } from '../ui/button'
 import { Loader2, Upload, X } from 'lucide-react'
 
 interface ImageUploaderProps {

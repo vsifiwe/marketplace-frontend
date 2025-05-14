@@ -1,6 +1,6 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "./appSidebar"
-import { Bookmark, ClipboardCopy, Package, ShoppingBagIcon, Store, UserIcon } from "lucide-react"
+import { Bookmark, Package, ShoppingBagIcon } from "lucide-react"
 
 export default function SellerLayout({ children }: { children: React.ReactNode }) {
 

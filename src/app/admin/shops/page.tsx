@@ -8,14 +8,14 @@ import { toast } from 'sonner'
 
 function Shops() {
     const [shops, setShops] = useState<Shop[]>([])
-
-        const fetchShops = async () => {
-            const shopsResponse = await getShops(onError)
-            if (shopsResponse.data) {
-                setShops(shopsResponse.data)
-            }
-        }
+        
         useEffect(() => {
+            const fetchShops = async () => {
+                const shopsResponse = await getShops(onError)
+                if (shopsResponse.data) {
+                    setShops(shopsResponse.data)
+                }
+            }
             fetchShops()
         }, [])
 

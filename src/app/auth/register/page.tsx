@@ -1,5 +1,4 @@
 import React from 'react'
-import RegisterSection from '@/components/ui/registerSection'
 import RegisterLayout from '@/components/layout/registerLayout'
 import LoginSection from '@/components/ui/loginSection'
 

@@ -3,40 +3,6 @@ import { SlidersVertical, Maximize2, Search, Store } from 'lucide-react'
 import { IconInput } from '../ui/input'
 import ShopListCard from '../ui/shopListCard'
 
-const shops = [
-  {
-    id: 1,
-    name: 'Shop 1',
-    totalProducts: 10,
-    image: 'https://placehold.co/100x100'
-  },{
-    id: 2,
-    name: 'Shop 2',
-    totalProducts: 10,
-    image: 'https://placehold.co/100x100'
-  },{
-    id: 3,
-    name: 'Shop 3',
-    totalProducts: 10,
-    image: 'https://placehold.co/100x100'
-  },{
-    id: 4,
-    name: 'Shop 4',
-    totalProducts: 10,
-    image: 'https://placehold.co/100x100'
-  },{
-    id: 5,
-    name: 'Shop 5',
-    totalProducts: 10,
-    image: 'https://placehold.co/100x100'
-  },{
-    id: 6,
-    name: 'Shop 6',
-    totalProducts: 10,
-    image: 'https://placehold.co/100x100'
-  },
-]
-
 function shopSidebar() {
   return (
     <div className='border rounded-lg py-4 my-8 mr-8'>

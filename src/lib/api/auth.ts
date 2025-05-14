@@ -1,4 +1,3 @@
-import router from "next/router";
 import { AUTH_ROUTES } from "./config";
 import axios from "axios";
 
@@ -38,6 +37,7 @@ async function makeAuthRequest(
                 onSuccess(userRole);
                 localStorage.setItem('role', userRole); 
             } catch (error) {
+                console.log("error", error)
                 onSuccess('user');
             }
             return { message: msg || "Success" };
@@ -45,8 +45,9 @@ async function makeAuthRequest(
             onError(msg);
             return { message: msg };
         }
-    } catch (error: any) {
-        const errorMessage = error.response?.data?.message || error.message || "Request failed";
+    } catch (error) {
+        console.log("error", error)
+        const errorMessage = "Request failed";
         onError(errorMessage);
         return { message: errorMessage };
     }
