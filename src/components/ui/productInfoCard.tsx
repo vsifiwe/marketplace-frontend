@@ -3,14 +3,21 @@ import React, { useState } from 'react'
 import { Button } from './button'
 import { EllipsisVertical, Heart, Minus, Phone, Plus, ShoppingCart, Star } from 'lucide-react'
 import Image from 'next/image'
+import { Product as ProductType } from '../columns/products'
+import { addToCart } from '@/lib/api/shop'
+import { toast } from 'sonner'
 
-function ProductInfoCard() {
+function ProductInfoCard({ product }: { product: ProductType }) {
     const [quantity, setQuantity] = useState(1)
 
     const handleQuantityChange = (value: number) => {
         if (value > 0) {
             setQuantity(value)
         }
+    }
+
+    const handleAddToCart = () => {
+        addToCart(product.id.toString(), quantity, () => toast.success('Product added to cart'))
     }
 
     function formatCurrency(amount: number, currency: string = 'Rwf') {
@@ -35,16 +42,16 @@ function ProductInfoCard() {
 
             {/* product info */}
             <div className='flex flex-row gap-4 p-4 flex-grow'>
-                <div className='w-1/2 h-full flex flex-col gap-4'>
-                    <h1 className='text-2xl font-bold'>Product 5</h1>
+                <div className=' h-full flex flex-col gap-4'>
+                    <h1 className='text-2xl font-bold'>{product.name}</h1>
                     <div className='flex flex-row gap-2 mb-4'>
-                        <span className='font-bold text-[#C1CF16]'>{formatCurrency(10000)}</span>
-                        <span className='font-bold text-gray-300 line-through'>{formatCurrency(15000)}</span>
+                        <span className='font-bold text-[#C1CF16]'>{formatCurrency(product.salePrice)}</span>
+                        <span className='font-bold text-gray-300 line-through'>{formatCurrency(product.price)}</span>
                     </div>
 
-                    <div className='flex flex-col gap-2 mb-4'>
+                    <div className='flex flex-col gap-2 mb-4 w-full'>
                         <p className='text-lg font-semibold'>Description</p>
-                        <p className='text-gray-500'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+                        <p className='text-gray-500'>{product.description}</p>
                     </div>
 
 
@@ -67,7 +74,7 @@ function ProductInfoCard() {
                             <Plus />
                         </Button>
 
-                        <Button>
+                        <Button onClick={handleAddToCart}>
                             <ShoppingCart /> Add to cart
                         </Button>
                     </div>

@@ -1,4 +1,5 @@
-import React from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
 import TopNavBar from '@/components/layout/topNavBar'
 import {
     Breadcrumb,
@@ -10,9 +11,23 @@ import {
 } from "@/components/ui/breadcrumb"
 import { ArrowLeft } from 'lucide-react'
 import ProductItemLayout from '@/components/layout/productItemLayout'
+import { useParams } from 'next/navigation'
+import { getProduct } from '@/lib/api/shop'
+import { Product as ProductType } from '@/components/columns/products'
 
 
 function Product() {
+    const { id } = useParams()
+    const [product, setProduct] = useState<ProductType>()
+
+    useEffect(() => {
+        const fetchProduct = async () => {
+            const product = await getProduct(id as string)
+            setProduct(product)
+        }
+        fetchProduct()
+    }, [id])
+
     return (
         <div>
             <TopNavBar />
@@ -37,7 +52,10 @@ function Product() {
             </div>
 
             <div className='w-full h-full flex flex-row gap-4 p-4'>
-                <ProductItemLayout />
+                {/* if product is not null, show the product item layout */}
+                {product && <ProductItemLayout product={product} />}
+                {/* if product is null, show the loading state */}
+                {!product && <div>Loading...</div>}
             </div>
         </div>
     )
