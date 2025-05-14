@@ -58,3 +58,51 @@ export async function getCategories(onError: (error: string) => void): Promise<A
 export async function getProducts(onError: (error: string) => void): Promise<ApiResponse<Product[]>> {
     return makeAuthenticatedRequest<Product[]>(ADMIN_ROUTES.GET_PRODUCTS, onError);
 }
+
+export async function approveSeller(id: number, onSuccess: () => void, onError: (error: string) => void): Promise<ApiResponse<void>> {
+    // patch request
+    try {
+        const token = localStorage.getItem('token')
+        const response = await axios.patch(ADMIN_ROUTES.APPROVE_SELLER(id), {}, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        if (response.status === 200) {
+            onSuccess()
+            return {data: response.data as void};
+        } else {
+            const msg = response.data.message;
+            onError(msg);
+            return { message: msg };
+        }
+    } catch (error) {
+        const errorMessage = "Request failed";
+        onError(errorMessage);
+        return { message: errorMessage };
+    }
+}
+
+export async function rejectSeller(id: number, onSuccess: () => void, onError: (error: string) => void): Promise<ApiResponse<void>> {
+    // patch request
+    try {
+        const token = localStorage.getItem('token')
+        const response = await axios.patch(ADMIN_ROUTES.REJECT_SELLER(id), {}, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        if (response.status === 200) {
+            onSuccess()
+            return {data: response.data as void};
+        } else {
+            const msg = response.data.message;
+            onError(msg);
+            return { message: msg };
+        }
+    } catch (error) {
+        const errorMessage = "Request failed";
+        onError(errorMessage);
+        return { message: errorMessage };
+    }
+}

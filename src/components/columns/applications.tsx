@@ -3,6 +3,8 @@ import { Button } from "../ui/button";
 import { Check, X } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { MoreHorizontal } from "lucide-react";
+import { approveSeller } from "@/lib/api/admin";
+import { toast } from "sonner";
 
 export type Application = {
     id: number
@@ -53,7 +55,11 @@ export const columns: ColumnDef<Application>[] = [
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuItem
-                  onClick={() => console.log('Approve user:', user.id)}
+                  onClick={() => approveSeller(user.id, () => {
+                    toast.success('Seller approved')
+                  }, (error) => {
+                    toast.error(error)
+                  })}
                   className="flex items-center gap-2 text-green-600"
                 >
                   <Check className="h-4 w-4" />
