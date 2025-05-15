@@ -30,10 +30,10 @@ function Products() {
         fetchProducts()
     }, [])
 
-    const handleProductCreated = () => {
-        fetchProducts()
-        setIsDialogOpen(false)
-    }
+    // const handleProductCreated = () => {
+    //     fetchProducts()
+    //     setIsDialogOpen(false)
+    // }
 
     if (isLoading) {
         return (
@@ -59,7 +59,7 @@ function Products() {
                         <DialogHeader>
                             <DialogTitle>Add New Product</DialogTitle>
                         </DialogHeader>
-                        <NewProductForm onSuccess={handleProductCreated} />
+                        <NewProductForm />
                     </DialogContent>
                 </Dialog>
             </div>
