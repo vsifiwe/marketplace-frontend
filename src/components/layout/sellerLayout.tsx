@@ -1,10 +1,19 @@
+
+'use client'
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "./appSidebar"
-import { Bookmark, Package, ShoppingBagIcon } from "lucide-react"
+import { Bookmark, LogOut, Package, ShoppingBagIcon, Store } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export default function SellerLayout({ children }: { children: React.ReactNode }) {
+    const router = useRouter()
 
     const items = [
+        {
+            title: "My Store",
+            url: "/seller/store",
+            icon: Store
+        },
         {
             title: "Categories",
             url: "/seller/categories",
@@ -24,7 +33,11 @@ export default function SellerLayout({ children }: { children: React.ReactNode }
     
     return (
         <SidebarProvider>
-            <AppSidebar items={items} title="Seller Dashboard" />
+            <AppSidebar items={items} title="Seller Dashboard" action={() => {
+                localStorage.removeItem('token')
+                localStorage.removeItem('role')
+                router.push('/')
+            }}/>
             <div>
                 <SidebarTrigger />
                 {children}

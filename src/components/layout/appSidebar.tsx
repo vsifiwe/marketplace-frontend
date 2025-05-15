@@ -1,6 +1,7 @@
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -8,6 +9,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { Button } from "../ui/button";
+import { LogOut } from "lucide-react";
 
 type SidebarItem = {
   title: string;
@@ -15,7 +18,7 @@ type SidebarItem = {
   icon: React.ElementType;
 }
 
-export function AppSidebar({ items, title }: { items: SidebarItem[], title: string }) {
+export function AppSidebar({ items, title, action }: { items: SidebarItem[], title: string, action: () => void }) {
   return (
     <Sidebar>
       <SidebarContent>
@@ -37,6 +40,12 @@ export function AppSidebar({ items, title }: { items: SidebarItem[], title: stri
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter>
+        <Button variant="ghost" onClick={action}>
+          <LogOut />
+          Logout
+        </Button>
+      </SidebarFooter>
     </Sidebar>
   )
 }

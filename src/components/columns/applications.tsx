@@ -5,6 +5,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { MoreHorizontal } from "lucide-react";
 import { approveSeller } from "@/lib/api/admin";
 import { toast } from "sonner";
+import { humanReadableDate } from "@/lib/utils";
 
 export type Application = {
     id: number
@@ -12,16 +13,6 @@ export type Application = {
     email: string
     isApplied: boolean
     createdAt: string
-}
-
-const humanReadableDate = (date: string) => {
-    return new Date(date).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-    })
 }
 
 export const columns: ColumnDef<Application>[] = [
