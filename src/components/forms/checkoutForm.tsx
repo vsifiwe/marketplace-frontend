@@ -79,7 +79,7 @@ function CheckOutForm() {
                 })
                 setIsLoading(false)
             })
-        }, 2000)
+        }, 10000)
     }
 
     return (
