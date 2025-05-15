@@ -81,7 +81,7 @@ function Cart() {
             <div className='bg-gray-100 h-10 w-full flex items-center justify-center mt-4'>
                 <div className='flex flex-row gap-2 items-center'>
                     <Info />
-                    <p className='text-sm'>By proceeding you won't be charged yet.</p>
+                    <p className='text-sm'>By proceeding you won&apos;t be charged yet.</p>
                 </div>
             </div>
 

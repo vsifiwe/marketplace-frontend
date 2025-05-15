@@ -77,6 +77,7 @@ export async function approveSeller(id: number, onSuccess: () => void, onError: 
             return { message: msg };
         }
     } catch (error) {
+        console.log("error", error)
         const errorMessage = "Request failed";
         onError(errorMessage);
         return { message: errorMessage };
@@ -101,6 +102,7 @@ export async function rejectSeller(id: number, onSuccess: () => void, onError: (
             return { message: msg };
         }
     } catch (error) {
+        console.log("error", error)
         const errorMessage = "Request failed";
         onError(errorMessage);
         return { message: errorMessage };

@@ -41,6 +41,7 @@ function Categories() {
                 setIsDialogOpen(false)
             }
         } catch (error) {
+            console.log(error)
             toast.error("Failed to create category")
         } finally {
             setIsLoading(false)

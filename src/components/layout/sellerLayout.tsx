@@ -2,7 +2,7 @@
 'use client'
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "./appSidebar"
-import { Bookmark, LogOut, Package, ShoppingBagIcon, Store } from "lucide-react"
+import { Bookmark, Package, ShoppingBagIcon, Store } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 export default function SellerLayout({ children }: { children: React.ReactNode }) {

@@ -1,8 +1,6 @@
-import { Category } from "@/components/columns/categories";
 import { SELLER_ROUTES } from "./config";
 import axios from "axios";
 import { CreateProduct, Product } from "@/components/columns/products";
-import { Order } from "@/components/columns/orders";
 import type { ApiResponse } from "./types";
 
 export interface Store {

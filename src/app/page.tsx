@@ -1,5 +1,4 @@
 'use client'
-import Image from "next/image";
 import { useAuth } from "@/hooks/useAuth";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -24,7 +23,6 @@ export default function Home() {
   }, [isAuthenticated, role, router])
   return (
     <div className="flex justify-center items-center h-screen">
-      {/* Spinner */}
       <h1 className="text-2xl font-bold">Loading</h1>
       <Loader2 className=" animate-spin  ml-4" />
     </div>

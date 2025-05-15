@@ -12,7 +12,7 @@ import { Store, Heart, ShoppingCart, Search, House, ChevronDown, User, LogOut } 
 import Cart from '@/components/ui/cart'
 import { useRouter } from 'next/navigation'
 
-function topNavBar() {
+function TopNavBar() {
     const router = useRouter()
     return (
         <div className='flex justify-between items-center p-4 bg-white border-b border-gray-200'>
@@ -75,4 +75,4 @@ function topNavBar() {
     )
 }
 
-export default topNavBar
+export default TopNavBar

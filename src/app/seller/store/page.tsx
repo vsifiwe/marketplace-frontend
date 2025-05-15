@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 import StoreForm, { StoreFormValues } from '@/components/forms/storeForm'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+import Image from 'next/image'
 
 function Store() {
     const [store, setStore] = useState<StoreType | null>(null)
@@ -77,7 +78,7 @@ function Store() {
                         <DialogHeader>
                             <DialogTitle>{store ? 'Edit Store' : 'Create Store'}</DialogTitle>
                         </DialogHeader>
-                        <StoreForm 
+                        <StoreForm
                             store={store || undefined}
                             onSubmit={handleSubmit}
                             isLoading={isLoading}
@@ -95,9 +96,9 @@ function Store() {
                             <p className='text-sm text-gray-500'>Phone: {store.phone}</p>
                             {store.image && (
                                 <div className="mt-2">
-                                    <img 
-                                        src={store.image} 
-                                        alt={store.name} 
+                                    <Image
+                                        src={store.image}
+                                        alt={store.name}
                                         className="w-32 h-32 object-cover rounded-lg"
                                     />
                                 </div>
