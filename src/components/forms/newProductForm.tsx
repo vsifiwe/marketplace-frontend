@@ -14,11 +14,11 @@ import { Category } from '../columns/categories'
 import { toast } from 'sonner'
 import { CreateProduct } from '../columns/products'
 
-interface NewProductFormProps {
-    onSuccess?: () => void;
-}
+// interface NewProductFormProps {
+//     onSuccess?: () => void;
+// }
 
-function NewProductForm({ onSuccess }: NewProductFormProps) {
+function NewProductForm() {
     const [categories, setCategories] = useState<Category[]>([])
 
     useEffect(() => {
