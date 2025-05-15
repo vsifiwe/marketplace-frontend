@@ -14,7 +14,11 @@ import { Category } from '../columns/categories'
 import { toast } from 'sonner'
 import { CreateProduct } from '../columns/products'
 
-function NewProductForm() {
+interface NewProductFormProps {
+    onSuccess?: () => void;
+}
+
+function NewProductForm({ onSuccess }: NewProductFormProps) {
     const [categories, setCategories] = useState<Category[]>([])
 
     useEffect(() => {
@@ -74,6 +78,7 @@ function NewProductForm() {
         const onSuccess = () => {
             toast.success("Product created successfully")
             form.reset()
+            onSuccess?.()
         }
 
         const onError = (error: string) => {
