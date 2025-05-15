@@ -1,3 +1,5 @@
+
+'use client'
 import React from 'react'
 import Image from 'next/image'
 import { Button } from '../ui/button'
@@ -6,10 +8,12 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
-import { Store, Heart, ShoppingCart, Search, House, ChevronDown, User } from 'lucide-react'
+import { Store, Heart, ShoppingCart, Search, House, ChevronDown, User, LogOut } from 'lucide-react'
 import Cart from '@/components/ui/cart'
+import { useRouter } from 'next/navigation'
 
 function topNavBar() {
+    const router = useRouter()
     return (
         <div className='flex justify-between items-center p-4 bg-white border-b border-gray-200'>
             <div className='flex items-center gap-4'>
@@ -20,10 +24,10 @@ function topNavBar() {
                     <p className='text-xl font-bold'>Mark8</p>
                     <p className='text-xs text-gray-500'>By Awesomity Lab</p>
                 </div>
-                <Button variant="ghost">
+                <Button variant="ghost" onClick={() => router.push('/')}>
                     <House /> Home
                 </Button>
-                <Button variant="ghost">
+                <Button variant="ghost" onClick={() => router.push('/stores')}>
                     <Store /> Stores
                 </Button>
 
@@ -48,9 +52,24 @@ function topNavBar() {
                 <Button variant="outline">
                     Open A Store <Store color='#C1CF16' />
                 </Button>
-                <Button variant="outline" className='flex items-center gap-2'>
-                    <User /> <ChevronDown />
-                </Button>
+                <Popover>
+                    <PopoverTrigger asChild>
+                        <Button variant="outline" className='flex items-center gap-2'>
+                            <User /> <ChevronDown />
+                        </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className='w-full'>
+                        <div>
+                            <Button variant="ghost" onClick={() => {
+                                localStorage.removeItem('token')
+                                localStorage.removeItem('role')
+                                router.push('/')
+                            }}>
+                                <LogOut /> Logout
+                            </Button>
+                        </div>
+                    </PopoverContent>
+                </Popover>
             </div>
         </div>
     )

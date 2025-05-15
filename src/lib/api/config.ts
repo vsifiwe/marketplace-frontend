@@ -12,7 +12,8 @@ export const SHOP_ROUTES = {
     ADD_TO_CART: `${API_URL}/shoppers/cart`,
     GET_CART: `${API_URL}/shoppers/cart`,
     DELETE_CART: `${API_URL}/shoppers/cart`,
-    PLACE_ORDER: `${API_URL}/shoppers/orders`
+    PLACE_ORDER: `${API_URL}/shoppers/orders`,
+    GET_SHOPS: `${API_URL}/shoppers/stores`
 }
 
 export const ADMIN_ROUTES = {

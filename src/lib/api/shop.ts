@@ -29,6 +29,27 @@ const getProducts = async () => {
     }
 }
 
+const getShops = async (onError: (error: string) => void) => {
+    try {
+        const token = localStorage.getItem('token')
+        const res = await axios.get(SHOP_ROUTES.GET_SHOPS, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        if (res.status === 200) {
+            console.log(res.data)
+            return res.data
+        } else {
+            onError(res.data.message || 'Failed to fetch shops')
+            return []
+        }
+    } catch (error) {
+        console.log(error)
+        return []
+    }
+}
+
 const getProduct = async (id: string) => {
     try {
         const token = localStorage.getItem('token')
@@ -119,4 +140,4 @@ const placeOrder = async (order: Order, onSuccess: () => void) => {
         return null
     }
 }
-export { getProducts, getProduct, addToCart, getCart, deleteCart, placeOrder }
+export { getProducts, getProduct, addToCart, getCart, deleteCart, placeOrder, getShops }
