@@ -1,9 +1,12 @@
+
+'use client'
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "./appSidebar"
 import { Bookmark, ClipboardCopy, Package, ShoppingBagIcon, Store, UserIcon } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-
+    const router = useRouter()
     const items = [
         {
             title: "Users",
@@ -39,7 +42,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     
     return (
         <SidebarProvider>
-            <AppSidebar items={items} title="Admin Dashboard" />
+            <AppSidebar items={items} title="Admin Dashboard" action={() => {
+                localStorage.removeItem('token')
+                localStorage.removeItem('role')
+                router.push('/')
+            }}/>
             <div>
                 <SidebarTrigger />
                 {children}
